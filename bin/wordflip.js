@@ -18,18 +18,19 @@ program
  * Program command and actions.
  */
 program
-  .command('flip <word ...>')
+  .command('flip <word...>')
   .description('flips words like tables')
   .action(function (word) {
+    console.log(word);
     console.log(flipWord(word));
   });
 
 program
-  .command('unflip <word ...>')
+  .command('unflip <word...>')
   .description('puts back words like tables')
   .action(function (word) {
     console.log(putBackWord(word));
-  })
+  });
 
 program.parse(process.argv);
 
