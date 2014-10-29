@@ -28,5 +28,8 @@
   },
   "dependencies": {
     "upsidedown": "0.0.5"
+  },
+  "devDependencies": {
+    "commander": "^2.5.0"
   }
 }
