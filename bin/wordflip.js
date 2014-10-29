@@ -10,6 +10,7 @@ var upsidedown = require('upsidedown');
  * Program options and metadata.
  */
 program
+  .usage('[command] [options] <word...>')
   .version('1.0.0')
   .option('-v, --verbose', 'provides more information')
   .option('-c', '--clipboard', "accesses system's clipboard");
@@ -21,7 +22,6 @@ program
   .command('flip <word...>')
   .description('flips words like tables')
   .action(function (word) {
-    console.log(word);
     console.log(flipWord(word));
   });
 
@@ -33,6 +33,31 @@ program
   });
 
 program.parse(process.argv);
+
+/**
+ * Useful constants.
+ */
+var NO_COMMAND_AND_WORD = program.args.length === 0;
+var NO_COMMAND = typeof program.args[1] === 'string';
+
+/**
+ * Example:
+ * wordflip  // prints out help
+ */
+if (NO_COMMAND_AND_WORD) {
+  program.help();
+}
+
+/**
+ * No command specified but words present.
+ *
+ * Example:
+ * wordflip tables are awesome  // flips word anyway
+ * (╯°□°）╯ ǝɯosǝʍɐ ǝɹɐ sǝlqɐʇ
+ */
+if (NO_COMMAND) {
+  console.log(flipWord(program.args));
+}
 
 /**
  * Flips word with rage face.
